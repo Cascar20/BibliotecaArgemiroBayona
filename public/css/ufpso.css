@@ -1,0 +1,135 @@
+/* Identidad visual UFPSO - Biblioteca Argemiro Bayona */
+:root {
+    --ufpso-rojo: #d7182a;
+    --ufpso-rojo-oscuro: #a9101f;
+    --ufpso-oscuro: #1f2124;
+    --ufpso-gris: #f3f4f3;
+
+    /* Nombres que usan las vistas anteriores */
+    --ufpso-vino: var(--ufpso-rojo);
+    --ufpso-azul: var(--ufpso-oscuro);
+}
+
+/* Las vistas anteriores definen sus colores en línea; esto los reemplaza */
+[style*="--ufpso-vino"] {
+    --ufpso-vino: var(--ufpso-rojo) !important;
+    --ufpso-azul: var(--ufpso-oscuro) !important;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Source Sans 3', 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--ufpso-gris);
+    color: #2b2b2b;
+}
+
+main.ufpso-contenido { flex: 1 0 auto; }
+
+/* ---------- Cabecera oscura ---------- */
+.ufpso-header { background: var(--ufpso-oscuro); color: #fff; }
+.ufpso-logo, .ufpso-logo:hover { color: #fff; text-decoration: none; }
+.ufpso-logo-texto { line-height: 1.1; font-size: 1.35rem; }
+.ufpso-logo-texto small { display: block; font-size: .72rem; opacity: .8; }
+.ufpso-divisor { width: 1px; height: 34px; background: rgba(255, 255, 255, .35); margin: 0 1rem; }
+
+.ufpso-header .btn-usuario {
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .4);
+}
+.ufpso-header .btn-usuario:hover,
+.ufpso-header .btn-usuario:focus { background: rgba(255, 255, 255, .12); color: #fff; }
+
+.ufpso-puntos {
+    background: var(--ufpso-rojo);
+    color: #fff;
+    font-weight: 700;
+    font-size: .9rem;
+    border-radius: 999px;
+    padding: .3rem .8rem;
+    text-decoration: none;
+}
+.ufpso-puntos:hover { background: var(--ufpso-rojo-oscuro); color: #fff; }
+
+/* ---------- Franja roja de accesos ---------- */
+.ufpso-barra { background: var(--ufpso-rojo); }
+.ufpso-barra-items { display: flex; justify-content: center; overflow-x: auto; }
+.ufpso-barra-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .2rem;
+    min-width: 110px;
+    padding: .7rem 1.25rem;
+    color: #fff;
+    font-size: .85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+}
+.ufpso-barra-item i { font-size: 1.5rem; line-height: 1; }
+.ufpso-barra-item:hover { background: var(--ufpso-rojo-oscuro); color: #fff; }
+.ufpso-barra-item.activo { background: var(--ufpso-rojo-oscuro); border-bottom-color: #fff; }
+
+@media (max-width: 991px) {
+    .ufpso-barra-items { justify-content: flex-start; }
+}
+
+/* ---------- Título de cada página ---------- */
+.ufpso-banner { background: #2b2e33; }
+.ufpso-banner h2 {
+    color: #fff !important;
+    font-size: 1.9rem !important;
+    font-weight: 700 !important;
+    margin: 0;
+}
+
+/* ---------- Contenido ---------- */
+main h4 { color: var(--ufpso-rojo); font-weight: 700; }
+
+.card { border: 0; border-radius: .5rem; }
+
+.table thead th {
+    background: #e9eaea;
+    color: #333;
+    border-bottom: 2px solid var(--ufpso-rojo);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--ufpso-rojo);
+    box-shadow: 0 0 0 .2rem rgba(215, 24, 42, .2);
+}
+
+.btn[style*="--ufpso-vino"] { border-color: transparent; }
+.btn[style*="--ufpso-vino"]:hover { filter: brightness(.88); }
+
+/* ---------- Pie de página ---------- */
+.ufpso-footer { background: var(--ufpso-oscuro); color: #fff; margin-top: 3rem; }
+
+/* ---------- Inicio de sesión y registro ---------- */
+.ufpso-login {
+    background: radial-gradient(circle at top, #3a3d42 0%, var(--ufpso-oscuro) 70%);
+    min-height: 100vh;
+}
+.ufpso-login-tarjeta {
+    background: #fff;
+    width: 100%;
+    max-width: 440px;
+    padding: 1.75rem;
+    border-radius: .5rem;
+    border-top: 5px solid var(--ufpso-rojo);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+/* Botones y controles de Breeze (login, perfil) en rojo UFPSO */
+.bg-gray-800 { background-color: var(--ufpso-rojo) !important; }
+.bg-gray-800:hover, .bg-gray-800:focus, .bg-gray-800:active {
+    background-color: var(--ufpso-rojo-oscuro) !important;
+}
+.text-indigo-600 { color: var(--ufpso-rojo) !important; }
+input:focus, select:focus, textarea:focus {
+    --tw-ring-color: var(--ufpso-rojo) !important;
+}

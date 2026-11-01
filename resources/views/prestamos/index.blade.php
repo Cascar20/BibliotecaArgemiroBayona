@@ -102,6 +102,10 @@
                                 @csrf
                                 @method('PATCH')
                                 <button class="btn btn-sm btn-outline-success">Registrar devolución</button>
+                                @if ($prestamo->fecha_devolucion_esperada->isPast())
+    <a href="{{ route('prestamos.index', ['multar_user' => $prestamo->user_id, 'motivo' => 'Devolución atrasada: ' . $prestamo->ejemplar->libro->titulo]) }}#multar"
+       class="btn btn-sm btn-outline-danger mb-1">Multar</a>
+@endif
                             </form>
                         </td>
                     </tr>
@@ -145,7 +149,47 @@
         </table>
 
         {{-- 4. Multas pendientes --}}
-        <h4 class="mb-3">Multas pendientes</h4>
+        <h4 class="mb-3" id="multar">Multas pendientes</h4>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<form method="POST" action="{{ route('multas.store') }}" class="card card-body shadow-sm mb-3">
+    @csrf
+    <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label small mb-1">Usuario</label>
+            <select name="user_id" class="form-select form-select-sm" required>
+                <option value="">Selecciona...</option>
+                @foreach ($usuarios as $u)
+                    <option value="{{ $u->id }}" @selected(old('user_id', request('multar_user')) == $u->id)>
+                        {{ $u->name }} ({{ $u->email }})
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label class="form-label small mb-1">Motivo</label>
+            <input type="text" name="motivo" maxlength="255" required class="form-control form-control-sm"
+                   value="{{ old('motivo', request('motivo')) }}" placeholder="Ej.: libro devuelto con daños">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label small mb-1">Puntos a descontar</label>
+            <input type="number" name="puntos" min="0" max="500" required class="form-control form-control-sm"
+                   value="{{ old('puntos', 10) }}">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-sm text-white w-100" style="background-color: var(--ufpso-vino);">Registrar multa</button>
+        </div>
+    </div>
+</form>
         <table class="table table-striped align-middle">
             <thead>
                 <tr>

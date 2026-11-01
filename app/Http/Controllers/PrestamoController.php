@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Canje;
 use App\Models\Multa;
 use App\Models\Prestamo;
@@ -38,7 +39,8 @@ class PrestamoController extends Controller
             ->latest()
             ->get();
 
-        return view('prestamos.index', compact('reservas', 'prestamos', 'canjes', 'multas'));
+        $usuarios = User::where('rol', 'usuario')->orderBy('name')->get();
+        return view('prestamos.index', compact('reservas', 'prestamos', 'canjes', 'multas', 'usuarios'));
     }
 
     public function entregar(Request $request, Reserva $reserva)

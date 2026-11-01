@@ -72,6 +72,7 @@ public function puedeGestionarBiblioteca(): bool
 public function multas(): HasMany
 {
     return $this->hasMany(Multa::class);
+    
 }
 
 public function tieneMultaPendiente(): bool
